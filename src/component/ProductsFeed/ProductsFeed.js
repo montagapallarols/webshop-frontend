@@ -12,17 +12,18 @@ export default function ProductsFeed() {
 
   const products = useSelector(selectProducts);
   console.log("WHAT?", products);
+
+
   return (
     <div>
-      {products.map((product) => {
-        return (
-          <div>
-            <ul>
-              <li>{product.name}</li>
-            </ul>
-          </div>
-        );
-      })}
+     {
+       products.map(product => {
+         return <ul>
+           <li>{product.name}</li>
+           <img src={product.imageUrl} height="200px"></img>
+         </ul>
+       })
+     }
     </div>
   );
 }

@@ -7,7 +7,7 @@ import CartPage from "./pages/CartPage";
 function App() {
   return (
     <div className="App">
-      <h1>Hello world!</h1>
+      <h1>Awesome webshop</h1>
       <Switch>
       <Route exact path = "/" component={HomePage}></Route>
       <Route exact path = "/product/:id" component={ProductPage}></Route>

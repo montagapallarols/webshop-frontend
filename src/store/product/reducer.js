@@ -1,4 +1,4 @@
-const initialState = { loading: true, products: [] };
+const initialState = { loading: true, categories: [] };
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     case "PRODUCTS_FETCHED":
       return {
         loading: false,
-        products: action.payload
+        categories: action.payload
       };
 
     default:
