@@ -3,11 +3,12 @@ import { Route, Switch } from "react-router";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
+import Toolbar from "./component/Toolbar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Awesome webshop</h1>
+      <Toolbar/>
       <Switch>
       <Route exact path = "/" component={HomePage}></Route>
       <Route exact path = "/product/:id" component={ProductPage}></Route>
