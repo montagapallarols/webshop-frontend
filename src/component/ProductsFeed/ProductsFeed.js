@@ -17,6 +17,9 @@ export default function ProductsFeed() {
   console.log("ALL PRODUCTS?", products);
 
   const cartProducts = useSelector(selectCartProducts);
+  const arrayOfCartIds = cartProducts.map(p => {
+    return parseInt(p.productId)
+})
 
   function handleClick(event) {
     console.log("EVENT", event.target.value);
@@ -46,9 +49,14 @@ export default function ProductsFeed() {
             <button value={product.id} onClick={handleClick}>
               ADD TO CART
             </button>
+
+            {(arrayOfCartIds.includes(product.id)) ? 
             <button value={product.id} onClick={handleClickRemove}>
-              REMOVE FROM CART
-            </button>
+            REMOVE FROM CART
+          </button> :
+          null
+            }
+            
           </ul>
         );
       })}

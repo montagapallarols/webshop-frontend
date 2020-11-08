@@ -11,3 +11,10 @@ export function removeProduct(id) {
     payload: id,
   };
 }
+
+export function emptyCart(id) {
+  return {
+    type: "EMPTY_CART",
+    payload: id,
+  }
+}

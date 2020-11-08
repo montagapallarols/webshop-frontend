@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectCartProducts } from "./../store/cart/selectors";
 import { selectProducts } from "../store/productFeed/selectors";
 import { addProduct, removeProduct } from '../store/cart/actions';
+import { Link } from "react-router-dom";
+import { emptyCart } from "../store/cart/actions";
 
 export default function CartPage() {
     const cartProducts = useSelector(selectCartProducts)
@@ -29,6 +31,9 @@ export default function CartPage() {
         dispatch(removeProduct(event.target.value))
     }
    
+    function handleEmpty(event){
+        dispatch(emptyCart(event.target.value))
+    }
 
     return (
         <div>
@@ -36,7 +41,7 @@ export default function CartPage() {
             {filteredProducts.map(p => {
                 return <div key={p.id}>
                     <h3>{p.name}</h3>
-                    <img src={p.imageUrl} height="200px"></img>
+                    <img src={p.imageUrl} height="100px"></img>
                 <p>
                     {cartProducts.find(c => c.productId == p.id).quantity} in cart
                 </p>
@@ -48,6 +53,15 @@ export default function CartPage() {
             </button>
                 </div>
             })}
+            {(cartProducts.length !== 0) ? 
+            <div>
+                <button onClick={handleEmpty}>Empty cart</button>
+                <Link to="/login"><button>Buy</button></Link>
+            </div>
+                :
+               null
+                 }
+            
         </div>
     )
 }

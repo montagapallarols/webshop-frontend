@@ -40,7 +40,15 @@ export default (state = initialState, action) => {
       );
         if (!productInCart) {
           return {
-            ...state
+            ...state,
+            products: state.products.map((p) =>
+            p.productId === action.payload
+              ? {
+                  ...p,
+                  quantity: 0,
+                }
+              : p
+          ),
           }
         }
 
@@ -64,6 +72,10 @@ export default (state = initialState, action) => {
           ),
         };
       } 
+      case "EMPTY_CART":
+        return {
+          products: []
+        }
 
 
     default:
