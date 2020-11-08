@@ -1,10 +1,22 @@
 import React from 'react'
+import { useSelector } from "react-redux"
+import { selectCartProducts } from "./../store/cart/selectors";
 
 export default function Toolbar() {
+    const cartProducts = useSelector(selectCartProducts)
+
+    const newArray = cartProducts.map(p => {
+        return p.quantity
+    })
+    console.log("array of quantities", newArray)
+
+    let sum = newArray.reduce(function(a, b){
+        return a + b;
+    }, 0);
+
     return (
         <div>
-            <h1>Awesome webshop</h1>
-            <p>Numer of products in cart</p>
+            <p>{sum} products in cart</p>
         </div>
     )
 }
