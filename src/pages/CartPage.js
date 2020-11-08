@@ -22,13 +22,6 @@ export default function CartPage() {
 
 
 
-
-    // const whatever = cartProducts.find(c => {
-    //    return parseInt(c.productId) === 3
-    // })
-    // if (whatever) {
-    //     console.log(whatever.quantity)
-    // }
    
 
     return (
@@ -38,11 +31,9 @@ export default function CartPage() {
                 return <div key={p.id}>
                     <h3>{p.name}</h3>
                     <img src={p.imageUrl} height="200px"></img>
-                    <p>
-                    {cartProducts.find(c =>
-        c.productId === p.id  
-        )}
-                    </p>
+                <p>
+                    {cartProducts.find(c => c.productId == p.id).quantity}
+                </p>
                 </div>
             })}
         </div>
