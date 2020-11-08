@@ -50,10 +50,10 @@ export default function ProductsFeed() {
             <img src={product.imageUrl} height="200px"></img>
 
             {(arrayOfCartIds.includes(product.id)) ? 
-            <p>{cartProducts.find(c => c.productId == product.id).quantity} in cart</p> :
+            <p>{cartProducts.find(c => c.productId == product.id).quantity} in cart</p>
+             :
             <p>add to cart</p>
             }
-
             <button value={product.id} onClick={handleClick}>
               +
             </button>

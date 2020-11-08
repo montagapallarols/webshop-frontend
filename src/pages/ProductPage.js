@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchProducts } from "../store/productFeed/actions";
 import { selectProducts } from "../store/productFeed/selectors";
-import { selectProduct } from "../store/productPage/selectors";
+import { selectCartProducts } from "../store/cart/selectors";
+import { addProduct, removeProduct } from "../store/cart/actions"
 
 export default function ProductPage() {
   const dispatch = useDispatch();
@@ -15,17 +16,45 @@ export default function ProductPage() {
 
   const allProducts = useSelector(selectProducts);
   console.log("allProducts", allProducts);
+  const cartProducts = useSelector(selectCartProducts)
   const thisProduct = allProducts.find(
-    (product) => parseInt(product.id) === parseInt(ROUTE_PARAMS.id)
+    (product) => product.id == ROUTE_PARAMS.id
   );
-  console.log("thisProduct", thisProduct);
+  console.log("THIS PRODUCT", thisProduct)
+  const arrayOfCartIds = cartProducts.map(p => {
+    return parseInt(p.productId)
+  })
+
+  function handleClick(event){
+    dispatch(addProduct(event.target.value))
+  }
+
+  function handleClickRemove(event){
+    dispatch(removeProduct(event.target.value))
+  }
 
   return (
     <div>
-      <h1>Product Page</h1>
-      <h2>Name: {thisProduct.name}</h2>
+      <h2>{thisProduct.name}</h2>
       <img src={thisProduct.imageUrl} height="200px" />
-      <p>Description: Lorem ipsum etc.</p>
+
+ <p>
+      {
+        arrayOfCartIds.includes(thisProduct.id) ? 
+        <span>
+        <button value={thisProduct.id} onClick={handleClickRemove}>-</button>
+        {cartProducts.find(c => c.productId == thisProduct.id).quantity + " in cart"}
+        <button value={thisProduct.id} onClick={handleClick}>+</button>
+        </span>
+        :
+        <span>
+          <button value={thisProduct.id} onClick={handleClick}>+</button>{" "}
+          add to cart
+          </span>
+      }
+      </p>
+ 
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
     </div>
   );
 }
