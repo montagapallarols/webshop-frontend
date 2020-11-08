@@ -38,19 +38,6 @@ export default (state = initialState, action) => {
       const productInCart = state.products.find(
         (p) => p.productId === action.payload
       );
-        if (!productInCart) {
-          return {
-            ...state,
-            products: state.products.map((p) =>
-            p.productId === action.payload
-              ? {
-                  ...p,
-                  quantity: 0,
-                }
-              : p
-          ),
-          }
-        }
 
       if (productInCart.quantity > 1) {
         return {

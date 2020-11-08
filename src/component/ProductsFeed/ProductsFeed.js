@@ -19,7 +19,15 @@ export default function ProductsFeed() {
   const cartProducts = useSelector(selectCartProducts);
   const arrayOfCartIds = cartProducts.map(p => {
     return parseInt(p.productId)
-})
+  })
+
+  const filteredProducts = products.filter(p => {
+  return arrayOfCartIds.includes(p.id)
+  })
+
+  filteredProducts.map(p => {
+    return cartProducts.find(c => c.productId == p.id).quantity
+  })
 
   function handleClick(event) {
     console.log("EVENT", event.target.value);
@@ -30,12 +38,6 @@ export default function ProductsFeed() {
     dispatch(removeProduct(event.target.value));
   }
 
-  const TheThing = cartProducts.find((p) => p.productId === products.id);
-  // console.log("CartPro", cartProducts);
-  // console.log("THING", TheThing);
-
-  const productInCart = products.find((p) => cartProducts.includes(p.id));
-  console.log("productInCart", productInCart);
 
   return (
     <div>
@@ -46,13 +48,19 @@ export default function ProductsFeed() {
               <li>{product.name}</li>
             </Link>
             <img src={product.imageUrl} height="200px"></img>
+
+            {(arrayOfCartIds.includes(product.id)) ? 
+            <p>{cartProducts.find(c => c.productId == product.id).quantity} in cart</p> :
+            <p>add to cart</p>
+            }
+
             <button value={product.id} onClick={handleClick}>
-              ADD TO CART
+              +
             </button>
 
             {(arrayOfCartIds.includes(product.id)) ? 
             <button value={product.id} onClick={handleClickRemove}>
-            REMOVE FROM CART
+           -
           </button> :
           null
             }
