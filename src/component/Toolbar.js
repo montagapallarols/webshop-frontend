@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from "react-redux"
 import { selectCartProducts } from "./../store/cart/selectors";
+import { Link } from "react-router-dom";
 
 export default function Toolbar() {
     const cartProducts = useSelector(selectCartProducts)
@@ -17,6 +18,7 @@ export default function Toolbar() {
     return (
         <div>
             <p>{sum} products in cart</p>
+            <Link to="/order">Go to cart</Link>
         </div>
     )
 }

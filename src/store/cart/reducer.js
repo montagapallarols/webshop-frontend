@@ -38,6 +38,12 @@ export default (state = initialState, action) => {
       const productInCart = state.products.find(
         (p) => p.productId === action.payload
       );
+        if (!productInCart) {
+          return {
+            ...state
+          }
+        }
+
       if (productInCart.quantity > 1) {
         return {
           ...state,
@@ -57,7 +63,8 @@ export default (state = initialState, action) => {
             (p) => p.productId !== action.payload
           ),
         };
-      }
+      } 
+
 
     default:
       console.log("DEFAULT");

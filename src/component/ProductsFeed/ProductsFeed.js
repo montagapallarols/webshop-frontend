@@ -14,7 +14,7 @@ export default function ProductsFeed() {
   }, [dispatch]);
 
   const products = useSelector(selectProducts);
-  console.log("WHAT?", products);
+  console.log("ALL PRODUCTS?", products);
 
   const cartProducts = useSelector(selectCartProducts);
 
@@ -28,8 +28,8 @@ export default function ProductsFeed() {
   }
 
   const TheThing = cartProducts.find((p) => p.productId === products.id);
-  console.log("CartPro", cartProducts.productId);
-  console.log("THING", TheThing);
+  // console.log("CartPro", cartProducts);
+  // console.log("THING", TheThing);
 
   const productInCart = products.find((p) => cartProducts.includes(p.id));
   console.log("productInCart", productInCart);
@@ -38,7 +38,7 @@ export default function ProductsFeed() {
     <div>
       {products.map((product) => {
         return (
-          <ul>
+          <ul key={product.id}>
             <Link to={`/product/${product.id}`}>
               <li>{product.name}</li>
             </Link>
