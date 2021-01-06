@@ -1,3 +1,6 @@
+import axios from "axios";
+import { apiUrl } from "../../config/constants";
+
 export function addProduct(id) {
   return {
     type: "ADD_PRODUCT",

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiUrl } from "../../config/constants";
 
 export function productsList(data) {
   return {
@@ -9,7 +10,7 @@ export function productsList(data) {
 
 export function fetchProducts() {
   return async function thunk(dispatch, getState) {
-    const response = await axios.get("http://localhost:4000/products");
+    const response = await axios.get(`${apiUrl}/products`);
     console.log("Products response", response.data.categories);
     dispatch(productsList(response.data.categories));
   };

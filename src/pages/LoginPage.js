@@ -17,12 +17,14 @@ export default function () {
         dispatch(login(email, password))
         setEmail("")
         setPassword("")
+
+        if (tokenAvailable) {
+            return <Redirect to="/order"></Redirect>;
+          }
+    
     }
 
-    if (tokenAvailable) {
-        return <Redirect to="/order"></Redirect>;
-      }
-
+    
 
     return (
         <div>
