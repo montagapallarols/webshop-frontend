@@ -1,3 +1,6 @@
+import axios from "axios";
+import { apiUrl } from "../../config/constants";
+
 export function addProduct(id) {
   return {
     type: "ADD_PRODUCT",
@@ -10,4 +13,11 @@ export function removeProduct(id) {
     type: "REMOVE_PRODUCT",
     payload: id,
   };
+}
+
+export function emptyCart(id) {
+  return {
+    type: "EMPTY_CART",
+    payload: id,
+  }
 }

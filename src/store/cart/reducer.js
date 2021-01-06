@@ -38,11 +38,6 @@ export default (state = initialState, action) => {
       const productInCart = state.products.find(
         (p) => p.productId === action.payload
       );
-        if (!productInCart) {
-          return {
-            ...state
-          }
-        }
 
       if (productInCart.quantity > 1) {
         return {
@@ -64,6 +59,10 @@ export default (state = initialState, action) => {
           ),
         };
       } 
+      case "EMPTY_CART":
+        return {
+          products: []
+        }
 
 
     default:
