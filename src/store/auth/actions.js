@@ -19,10 +19,10 @@ export const LOG_OUT = "LOG_OUT";
     };
   };
 
-  export function loginToken(token, user) {
+  export function loginToken(user, token) {
     return {
         type: "LOGIN_TOKEN",
-        payload: { token, user }
+        payload: {user, token }
       };
 }
 
