@@ -1,9 +1,7 @@
 import { LOG_OUT, LOGIN_SUCCESS, LOGIN_TOKEN } from "./actions";
 
 const initialState = {
-  token: localStorage.getItem("token"),
-  name: null,
-  email: null
+  token: localStorage.getItem("token")
 };
 
 export default (state = initialState, action) => {

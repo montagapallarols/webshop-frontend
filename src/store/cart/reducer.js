@@ -9,7 +9,6 @@ export default (state = initialState, action) => {
         (p) => p.productId === action.payload
       );
       if (!specificProduct) {
-        console.log("get here?");
         return {
           ...state,
           products: [
@@ -21,7 +20,6 @@ export default (state = initialState, action) => {
           ],
         };
       } else {
-        console.log("whatever");
         return {
           ...state,
           products: state.products.map((p) =>
@@ -66,7 +64,6 @@ export default (state = initialState, action) => {
 
 
     default:
-      console.log("DEFAULT");
       return state;
   }
 };
