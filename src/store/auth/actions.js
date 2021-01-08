@@ -6,7 +6,7 @@ import {
     showMessageWithTimeout,
     setMessage
   } from "../appState/actions";
-  import { selectToken } from "./selectors";
+  import { selectToken, selectUser } from "./selectors";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_TOKEN = "LOGIN_TOKEN";
@@ -37,9 +37,11 @@ export const login = (email, password) => {
           email,
           password
         });
-  
+        console.log("Login response", response)
+        const splitName = response.data.fullName.split(" ")
+        console.log("SPLIT NAME", splitName)
         dispatch(loginSuccess(response.data));
-        dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+        dispatch(showMessageWithTimeout("success", false, `Welcome back ${splitName[0]}!`, 5000));
         dispatch(appDoneLoading());
       } catch (error) {
         if (error.response) {
