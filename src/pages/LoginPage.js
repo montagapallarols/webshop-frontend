@@ -1,59 +1,69 @@
-import React, { useState } from 'react'
-import { login } from "../store/auth/actions";
+import React, { useState, useEffect } from "react";
+import { Form, Container, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
+import { Col } from "react-bootstrap";
+import { login } from "../store/auth/actions";
 import { selectToken } from "../store/auth/selectors";
-import { Redirect } from "react-router-dom"
 
-export default function () {
-    const [ email, setEmail ] = useState("")
-    const [ password, setPassword ] = useState("")
+export default function SignUp() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const history = useHistory();
 
-    const dispatch = useDispatch()
-    const tokenAvailable = useSelector(selectToken);
-
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log("Login with:", email, password)
-        dispatch(login(email, password))
-        setEmail("")
-        setPassword("")
-
-        if (tokenAvailable) {
-            return <Redirect to="/order"></Redirect>;
-          }
-    
+  useEffect(() => {
+    if (token !== null) {
+      history.push("/");
     }
+  }, [token, history]);
 
-    
+  function submitForm(event) {
+    console.log("hi");
+    event.preventDefault();
 
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <p>
-                    <label>
-                        Email:
-                        {" "}<input 
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        >
-                        </input>
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Password:
-                        {" "}<input 
-                        type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        >
-                        </input>
-                    </label>
-                </p>
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    )
+    dispatch(login(email, password));
+
+    setEmail("");
+    setPassword("");
+  }
+
+  return (
+    <Container>
+      <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+        <h1 className="mt-5 mb-5">Login</h1>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            value={email}
+            onChange={event => setEmail(event.target.value)}
+            type="email"
+            placeholder="Enter email"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+            type="password"
+            placeholder="Password"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mt-5">
+          <Button variant="primary" type="submit" onClick={submitForm}>
+            Log in
+          </Button>
+        </Form.Group>
+        <Link to="/signup" style={{ textAlign: "center" }}>
+          Click here to sign up
+        </Link>
+      </Form>
+    </Container>
+  );
 }
+
