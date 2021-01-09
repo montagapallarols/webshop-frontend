@@ -11,6 +11,7 @@ import MessageBox from "../src/component/MessageBox";
 import { selectMessage } from './store/appState/selectors';
 import Navigation from "../src/component/Navigation";
 import { getUserWithStoredToken } from "./store/auth/actions";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ function App() {
       <Route exact path = "/product/:id" component={ProductPage}></Route>
       <Route exact path = "/order" component={CartPage}></Route>
       <Route exact path = "/login" component={LoginPage}></Route>
+      <Route exact path = "/signup" component={SignupPage}></Route>
       </Switch>
     </div>
   );

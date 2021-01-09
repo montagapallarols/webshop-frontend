@@ -13,7 +13,8 @@ export default function LoggedIn() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector(selectUser);
-  const userNameArray = user.fullName.split(" ")
+  const userNameArray = user?.fullName?.split(" ")
+  const userFirstName = userNameArray ? userNameArray[0] : null
   const token = useSelector(selectToken)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function LoggedIn() {
  
   return (
     <>
-      <Nav.Item style={{ padding: ".5rem" }}>{userNameArray[0]}</Nav.Item>
+      <Nav.Item style={{ padding: ".5rem" }}>{userFirstName}</Nav.Item>
       <Cart/>
       <Button onClick={() => dispatch(logOut())}>Logout</Button>
 

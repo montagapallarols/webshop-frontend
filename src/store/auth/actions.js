@@ -19,10 +19,10 @@ export const LOG_OUT = "LOG_OUT";
     };
   };
 
-  export function loginToken(token, user) {
+  export function loginToken(user, token) {
     return {
         type: "LOGIN_TOKEN",
-        payload: { token, user }
+        payload: {user, token }
       };
 }
 
@@ -60,13 +60,13 @@ export const signUp = (fullName, email, password, address) => {
     return async (dispatch, getState) => {
       dispatch(appLoading());
       try {
-        const response = await axios.post(`${apiUrl}/signup`, {
+        const response = await axios.post(`${apiUrl}/auth/signup`, {
           fullName,
           email,
           password,
           address
         });
-  
+        console.log("Signup response", response.data)
         dispatch(loginSuccess(response.data));
         dispatch(showMessageWithTimeout("success", true, "Your account has been created!"));
         dispatch(appDoneLoading());
