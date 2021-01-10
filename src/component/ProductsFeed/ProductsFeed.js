@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import "./ProductsFeed.css"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/productFeed/actions";
 import { selectProducts } from "../../store/productFeed/selectors";
 import { addProduct, removeProduct } from "../../store/cart/actions";
 import { Link } from "react-router-dom";
 import { selectCartProducts } from "../../store/cart/selectors";
+import { CardDeck, Card } from "react-bootstrap";
 
 export default function ProductsFeed() {
   const dispatch = useDispatch();
@@ -40,16 +42,20 @@ export default function ProductsFeed() {
 
 
   return (
-    <div>
-      {products.map((product) => {
+    <div className="product-list">
+      {products?.map((product) => {
         return (
-          <ul key={product.id}>
-            <Link to={`/product/${product.id}`}>
-              <li>{product.name}</li>
+    
+            <Card key={product.id} style={{ width: "18rem", margin: "30px", border: "none" }}>
+              <Link to={`/product/${product.id}`}>
+              <Card.Img className="product-image" variant="top" src={product.imageUrl} alt="product"/>
             </Link>
-            <img src={product.imageUrl} height="200px"></img>
-
-            {(arrayOfCartIds.includes(product.id)) ? 
+            <Card.Body>
+            <Card.Title>{product.name}</Card.Title>
+          <Card.Text>
+          €{product.price}
+          </Card.Text>
+          {(arrayOfCartIds.includes(product.id)) ? 
             <p>{cartProducts.find(c => c.productId == product.id).quantity} in cart</p>
              :
             <p>add to cart</p>
@@ -64,8 +70,8 @@ export default function ProductsFeed() {
           </button> :
           null
             }
-            
-          </ul>
+          </Card.Body>
+          </Card>
         );
       })}
     </div>
