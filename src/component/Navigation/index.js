@@ -6,6 +6,7 @@ import NavbarItem from "./NavbarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import { selectToken } from "../../store/auth/selectors";
+import Cart from "./Cart";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
@@ -22,6 +23,7 @@ export default function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           {loginLogoutControls}
+       
         </Nav>
       </Navbar.Collapse>
     </Navbar>
