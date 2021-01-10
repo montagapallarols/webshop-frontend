@@ -2,11 +2,10 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import NavbarItem from "./NavbarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import { selectToken } from "../../store/auth/selectors";
-import Cart from "./Cart";
+import "./Navigation.css";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
@@ -15,7 +14,7 @@ export default function Navigation() {
 
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar variant="light" expand="lg" sticky="top" className="navbar">
       <Navbar.Brand as={NavLink} to="/">
         Greenshop
       </Navbar.Brand>

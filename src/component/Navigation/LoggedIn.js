@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../store/auth/actions";
 import { Button, Nav } from "react-bootstrap";
 import { selectUser, selectToken } from "../../store/auth/selectors";
-import NavbarItem from "./NavbarItem";
 import { useHistory } from "react-router-dom";
-import { selectCartProducts } from "../../store/cart/selectors";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Cart from "./Cart";
 
 export default function LoggedIn() {
@@ -27,7 +24,7 @@ export default function LoggedIn() {
     <>
       <Nav.Item style={{ padding: ".5rem" }}>{userFirstName}</Nav.Item>
       <Cart/>
-      <Button onClick={() => dispatch(logOut())}>Logout</Button>
+      <Button variant="info" onClick={() => dispatch(logOut())}>Logout</Button>
 
     </>
   );
