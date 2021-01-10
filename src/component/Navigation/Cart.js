@@ -19,7 +19,7 @@ export default function Cart() {
 
     return (
         <div style={{ paddingRight: "7rem" }}>
-            <Link to="/order">
+            <Link to="/order" style={{color: "black", textDecoration: "none"}}>
                 <ShoppingCartIcon/>
                 <span style={{ paddingLeft: "0.5rem" }}>{sum}</span>
             </Link>
