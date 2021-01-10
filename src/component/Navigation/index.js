@@ -15,7 +15,7 @@ export default function Navigation() {
 
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" sticky="top">
       <Navbar.Brand as={NavLink} to="/">
         Greenshop
       </Navbar.Brand>
