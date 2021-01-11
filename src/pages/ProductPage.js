@@ -5,6 +5,7 @@ import { fetchProducts } from "../store/productFeed/actions";
 import { selectProducts } from "../store/productFeed/selectors";
 import { selectCartProducts } from "../store/cart/selectors";
 import { addProduct, removeProduct } from "../store/cart/actions"
+import { Button } from "react-bootstrap";
 
 export default function ProductPage() {
   const dispatch = useDispatch();
@@ -35,20 +36,20 @@ export default function ProductPage() {
 
   return (
     <div>
-      <h2>{thisProduct.name}</h2>
-      <img src={thisProduct.imageUrl} height="200px" />
+      <h2>{thisProduct?.name}</h2>
+      <img src={thisProduct?.imageUrl} height="200px" />
 
  <p>
       {
-        arrayOfCartIds.includes(thisProduct.id) ? 
+        arrayOfCartIds.includes(thisProduct?.id) ? 
         <span>
-        <button value={thisProduct.id} onClick={handleClickRemove}>-</button>
-        {cartProducts.find(c => c.productId == thisProduct.id).quantity + " in cart"}
-        <button value={thisProduct.id} onClick={handleClick}>+</button>
+        <Button className="cart-button" variant="dark" value={thisProduct?.id} onClick={handleClickRemove}>-</Button>
+        {cartProducts.find(c => c.productId == thisProduct?.id).quantity + " in cart"}
+        <Button className="cart-button" variant="dark" value={thisProduct?.id} onClick={handleClick}>+</Button>
         </span>
         :
         <span>
-          <button value={thisProduct.id} onClick={handleClick}>+</button>{" "}
+          <Button className="cart-button" variant="dark" value={thisProduct?.id} onClick={handleClick}>+</Button>{" "}
           add to cart
           </span>
       }
