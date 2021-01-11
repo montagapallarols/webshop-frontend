@@ -24,7 +24,7 @@ export default function ProductsFeed() {
   const products = useSelector(selectProducts);
   console.log("WHAT ARE THE PRODUCTS", products)
 
-  const productsFilteredByCategory = products.map(p => {
+  const productsMappedByCategory = products.map(p => {
       if (categoryNumber === 0) {
         return p.categoryId === 1 || p.categoryId === 2 ? p : null
       } else if (categoryNumber === 1) {
@@ -35,11 +35,10 @@ export default function ProductsFeed() {
         return null
       }
   })
-  console.log("FILTERED PRODUCTS BY CATEGORY", productsFilteredByCategory)
-  const productsFiltered = productsFilteredByCategory.filter(p => {
+  const productsFilteredByCategory = productsMappedByCategory.filter(p => {
     return p !== null
   })
-  console.log("Filtered products", productsFiltered)
+ 
 
   const cartProducts = useSelector(selectCartProducts);
   const arrayOfCartIds = cartProducts.map(p => {
@@ -65,7 +64,7 @@ export default function ProductsFeed() {
 
   return (
     <div className="product-list">
-      {products?.map((product) => {
+      {productsFilteredByCategory?.map((product) => {
         return (
     
             <Card key={product.id} style={{ width: "18rem", margin: "30px", border: "none" }}>
