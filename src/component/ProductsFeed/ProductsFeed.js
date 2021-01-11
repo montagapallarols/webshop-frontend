@@ -6,8 +6,9 @@ import { selectProducts } from "../../store/productFeed/selectors";
 import { addProduct, removeProduct } from "../../store/cart/actions";
 import { Link } from "react-router-dom";
 import { selectCartProducts } from "../../store/cart/selectors";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { AddCircleIcon, RemoveCircleIcon } from '@material-ui/icons';
 
 export default function ProductsFeed() {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ export default function ProductsFeed() {
         return (
     
             <Card key={product.id} style={{ width: "18rem", margin: "30px", border: "none" }}>
-              <Link to={`/product/${product.id}`}>
+              <Link to={`/${categoryName}/product/${product.id}`}>
               <Card.Img className="product-image" variant="top" src={product.imageUrl} alt="product"/>
             </Link>
             <Card.Body>
@@ -81,14 +82,14 @@ export default function ProductsFeed() {
              :
             <p>add to cart</p>
             }
-            <button value={product.id} onClick={handleClick}>
+            <Button className="cart-button" variant="dark" value={product.id} onClick={handleClick}>
               +
-            </button>
+            </Button>
 
             {(arrayOfCartIds.includes(product.id)) ? 
-            <button value={product.id} onClick={handleClickRemove}>
+            <Button className="cart-button" variant="dark" value={product.id} onClick={handleClickRemove}>
            -
-          </button> :
+          </Button> :
           null
             }
           </Card.Body>

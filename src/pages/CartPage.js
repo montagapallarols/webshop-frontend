@@ -11,8 +11,6 @@ export default function CartPage() {
     const allProducts = useSelector(selectProducts);
     const dispatch = useDispatch()
 
-    console.log("Cart PRODUCTS", cartProducts)
-
     const arrayOfCartIds = cartProducts.map(p => {
         return parseInt(p.productId)
     })
