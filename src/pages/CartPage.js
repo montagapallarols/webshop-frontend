@@ -5,6 +5,7 @@ import { selectProducts } from "../store/productFeed/selectors";
 import { addProduct, removeProduct } from '../store/cart/actions';
 import { Link } from "react-router-dom";
 import { emptyCart } from "../store/cart/actions";
+import { Button } from "react-bootstrap";
 
 export default function CartPage() {
     const cartProducts = useSelector(selectCartProducts)
@@ -43,18 +44,18 @@ export default function CartPage() {
                 <p>
                     {cartProducts.find(c => c.productId == p.id).quantity} in cart
                 </p>
-                <button value={p.id} onClick={handleClick}>
+                <Button className="cart-button" variant="dark" value={p.id} onClick={handleClick}>
               +
-            </button>
-            <button value={p.id} onClick={handleClickRemove}>
+            </Button>
+            <Button className="cart-button" variant="dark" value={p.id} onClick={handleClickRemove}>
               -
-            </button>
+            </Button>
                 </div>
             })}
             {(cartProducts.length !== 0) ? 
-            <div>
-                <button onClick={handleEmpty}>Empty cart</button>
-                <Link to="/login"><button>Buy</button></Link>
+            <div style={{padding: "30px"}}>
+                <Button style={{margin: "0 20px"}} variant="dark" onClick={handleEmpty}>Empty cart</Button>
+                <Link to="/login"><Button>Buy</Button></Link>
             </div>
                 :
                null

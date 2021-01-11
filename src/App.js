@@ -27,11 +27,11 @@ function App() {
       <MessageBox/>
       <ProductsNav/>
       <Switch>
-      <Route exact path = "/:categoryName" component={HomePage}></Route>
-      <Route exact path = "/:categoryName/product/:id" component={ProductPage}></Route>
       <Route exact path = "/order" component={CartPage}></Route>
       <Route exact path = "/login" component={LoginPage}></Route>
       <Route exact path = "/signup" component={SignupPage}></Route>
+      <Route path = "/:categoryName/product/:id" component={ProductPage}></Route>
+      <Route path = "/:categoryName" component={HomePage}></Route>
       </Switch>
     </div>
   );
