@@ -11,7 +11,7 @@ export default function Cart() {
     const newArray = cartProducts.map(p => {
         return p.quantity
     })
-    console.log("array of quantities", newArray)
+    
 
     let sum = newArray.reduce(function(a, b){
         return a + b;

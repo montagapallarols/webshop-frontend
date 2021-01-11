@@ -6,7 +6,8 @@ import { selectProducts } from "../../store/productFeed/selectors";
 import { addProduct, removeProduct } from "../../store/cart/actions";
 import { Link } from "react-router-dom";
 import { selectCartProducts } from "../../store/cart/selectors";
-import { CardDeck, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 export default function ProductsFeed() {
   const dispatch = useDispatch();
@@ -15,8 +16,29 @@ export default function ProductsFeed() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  const { categoryName } = useParams();
+
+  const categoryNumber = categoryName === "shop-all" ? 0 : categoryName === "lifestyle" ? 1 : 2
+  console.log("CategoryNumber", categoryNumber)
+
   const products = useSelector(selectProducts);
-  console.log("ALL PRODUCTS?", products);
+  console.log("WHAT ARE THE PRODUCTS", products)
+
+  const productsMappedByCategory = products.map(p => {
+      if (categoryNumber === 0) {
+        return p.categoryId === 1 || p.categoryId === 2 ? p : null
+      } else if (categoryNumber === 1) {
+        return p.categoryId === 1 ? p : null
+      } else if (categoryNumber === 2) {
+        return p.categoryId === 2 ? p : null
+      } else {
+        return null
+      }
+  })
+  const productsFilteredByCategory = productsMappedByCategory.filter(p => {
+    return p !== null
+  })
+ 
 
   const cartProducts = useSelector(selectCartProducts);
   const arrayOfCartIds = cartProducts.map(p => {
@@ -32,7 +54,6 @@ export default function ProductsFeed() {
   })
 
   function handleClick(event) {
-    console.log("EVENT", event.target.value);
     dispatch(addProduct(event.target.value));
   }
 
@@ -43,7 +64,7 @@ export default function ProductsFeed() {
 
   return (
     <div className="product-list">
-      {products?.map((product) => {
+      {productsFilteredByCategory?.map((product) => {
         return (
     
             <Card key={product.id} style={{ width: "18rem", margin: "30px", border: "none" }}>

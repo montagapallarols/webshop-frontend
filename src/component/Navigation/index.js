@@ -15,7 +15,7 @@ export default function Navigation() {
 
   return (
     <Navbar variant="light" expand="lg" sticky="top" className="navbar">
-      <Navbar.Brand as={NavLink} to="/">
+      <Navbar.Brand as={NavLink} to="/shop-all">
         Greenshop
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
