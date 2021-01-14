@@ -12,10 +12,12 @@ import { AddCircleIcon, RemoveCircleIcon } from '@material-ui/icons';
 
 export default function ProductsFeed() {
   const dispatch = useDispatch();
+  const cartProducts = useSelector(selectCartProducts);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
 
   const { categoryName } = useParams();
 
@@ -39,9 +41,7 @@ export default function ProductsFeed() {
   const productsFilteredByCategory = productsMappedByCategory.filter(p => {
     return p !== null
   })
- 
 
-  const cartProducts = useSelector(selectCartProducts);
   const arrayOfCartIds = cartProducts.map(p => {
     return parseInt(p.productId)
   })

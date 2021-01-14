@@ -21,3 +21,4 @@ export function emptyCart(id) {
     payload: id,
   }
 }
+
