@@ -32,6 +32,7 @@ export default (state = initialState, action) => {
           ),
         };
       }
+      
     case "REMOVE_PRODUCT":
       const productInCart = state.products.find(
         (p) => p.productId === action.payload
