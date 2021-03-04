@@ -1,8 +1,8 @@
 ### Greenshop 🌱
 
-A full stack ecommerce site inspired by https://pureosophy.com/
+A full stack e-commerce site inspired by https://pureosophy.com/
 
-<img width="1273" alt="Screen Shot 2021-01-29 at 10 56 05" src="https://user-images.githubusercontent.com/64054997/106260553-d069c400-6220-11eb-8ef6-f3ebd0dce22d.png">
+<img width="1272" alt="Screen Shot 2021-02-23 at 11 55 32" src="https://user-images.githubusercontent.com/64054997/109957078-c0904480-7ce4-11eb-9a80-91bc44d8afb5.png">
 
 #### Technologies used
 
